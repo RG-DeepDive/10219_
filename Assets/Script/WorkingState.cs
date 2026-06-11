@@ -39,25 +39,38 @@ public class WorkingState : MonoBehaviour, State
     {
         if (Input.GetKey(KeyCode.W))
          {
-            player.position.x += player.direction.x * _speed;
-            player.position.y += player.direction.y * _speed;
+            player.direction.y = 1;
 
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            player.position.x -= player.direction.x * _speed;
-            player.position.y -= player.direction.y * _speed;
+            player.direction.y = -1;
         }
         else
         {
-            player.position.x += 0;
-            player.position.y += 0;
+            player.direction.y = 0;
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            player.direction.x = -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            player.direction.x = 1;
+        }
+        else
+        {
+            player.direction.x = 0;
+        }
+
+            player.direction.Normalize();
+
+        player.direction = player.direction * _speed;
+        player.position += player.direction;
     }
 
     public void Updating()
     {
-        SetDirection();
         Move();
         //throw new System.NotImplementedException();
     }
