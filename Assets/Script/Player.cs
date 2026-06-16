@@ -21,11 +21,13 @@ public class Player : MonoBehaviour
     public Vector3 position;
     private float _rotate;
     public float rotate { get; set; }
-    public float speed = 1;
+    public float speed = 5;
     public Transform trans;
     public State playerState;
     private Rigidbody2D rb;
     public bool isTabel;
+    public GameObject popupPanel;
+    public PopupManager popupManager; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
         rotate = 0;
         playerState = gameObject.AddComponent<WorkingState>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        popupManager = popupPanel.GetComponent<PopupManager>();
             
     }
 
@@ -42,14 +45,15 @@ public class Player : MonoBehaviour
     {
         playerState.Updating();
         trans.position = position;
-        trans.rotation = Quaternion.Euler(0, 0, rotate);
+        //trans.rotation = Quaternion.Euler(0, 0, rotate);
 
         if (Input.GetKeyDown(KeyCode.F) && isTabel)
         {
-            print("open tabel");
+            popupManager.OpenPopup();
         }
     }
 
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("tabel"))
@@ -65,5 +69,6 @@ public class Player : MonoBehaviour
             isTabel = false;
         }
 
-    }
+    } 
+
 }
