@@ -23,10 +23,11 @@ public class Player : MonoBehaviour
     public float rotate { get; set; }
     public float speed = 5;
     public Transform trans;
-    public State playerState;
+    public State state;
     private Rigidbody2D rb;
     public bool isTabel;
-    public GameObject popupPanel;
+    public PopupBase tabelPopup;
+    public PopupBase invenPopup;
     public PopupManager popupManager; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,22 +35,26 @@ public class Player : MonoBehaviour
         trans = transform;
         position = trans.position;
         rotate = 0;
-        playerState = gameObject.AddComponent<WorkingState>();
+        state = gameObject.GetComponent<WalkingState>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        popupManager = popupPanel.GetComponent<PopupManager>();
-            
+        popupManager = gameObject.GetComponent<PopupManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerState.Updating();
+        state.Updating();
         trans.position = position;
         //trans.rotation = Quaternion.Euler(0, 0, rotate);
 
         if (Input.GetKeyDown(KeyCode.F) && isTabel)
         {
-            popupManager.OpenPopup();
+            popupManager.OpenPopup(tabelPopup);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            popupManager.OpenPopup(invenPopup);
         }
     }
 

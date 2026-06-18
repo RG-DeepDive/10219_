@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class WorkingState : MonoBehaviour, State
+public class WalkingState : State
 {
     public Player player;
     public float rotation = 1f;
@@ -69,7 +69,7 @@ public class WorkingState : MonoBehaviour, State
         player.position += player.direction;
     }
 
-    public void Updating()
+    public override void Updating()
     {
         Move();
         //throw new System.NotImplementedException();
