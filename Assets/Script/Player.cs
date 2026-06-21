@@ -1,21 +1,9 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-    private static Player instance;
-
-    //void Awake()
-    //{
-    //    if (instance != null)
-    //    {
-    //        Destroy(gameObject);
-    //        return;
-    //    }
-
-    //    instance = this;
-    //    DontDestroyOnLoad(gameObject);
-    //}
 
     public Vector3 direction;
     public Vector3 position;
@@ -28,8 +16,10 @@ public class Player : MonoBehaviour
     public bool isTabel;
     public PopupBase tabelPopup;
     public PopupBase invenPopup;
-    public PopupManager popupManager; 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public PopupManager popupManager;
+
+    public List<Item> inventory;
+
     void Start()
     {
         trans = transform;
