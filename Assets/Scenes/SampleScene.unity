@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 130034463}
   - component: {fileID: 130034462}
   - component: {fileID: 130034464}
+  - component: {fileID: 130034465}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -382,6 +383,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryPopup
   closePopup: {fileID: 1815118769}
   player: {fileID: 1799679026}
+  materialPanel: {fileID: 254227256}
+  inventoryManager: {fileID: 130034465}
+--- !u!114 &130034465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130034460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32eae63365856f842b9f80ac677ba7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  inventory: []
+  item1: {fileID: 0}
+  item2: {fileID: 0}
+  item3: {fileID: 0}
+  material1:
+    item: {fileID: 0}
+    amount: 0
+  material2:
+    item: {fileID: 0}
+    amount: 0
+  material3:
+    item: {fileID: 0}
+    amount: 0
 --- !u!1 &135692508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4278,7 +4306,8 @@ MonoBehaviour:
   tabelPopup: {fileID: 463107007}
   invenPopup: {fileID: 130034464}
   popupManager: {fileID: 1799679032}
-  inventory: []
+  invenManager: {fileID: 130034465}
+  level: 0
 --- !u!212 &1799679027
 SpriteRenderer:
   serializedVersion: 2

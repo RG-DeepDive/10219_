@@ -1,5 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,11 +16,16 @@ public class Player : MonoBehaviour
     public State state;
     private Rigidbody2D rb;
     public bool isTabel;
+
     public PopupBase tabelPopup;
     public PopupBase invenPopup;
     public PopupManager popupManager;
 
-    public List<Item> inventory;
+    public InventoryManager invenManager;
+
+    public int level;
+
+
 
     void Start()
     {
@@ -30,18 +37,18 @@ public class Player : MonoBehaviour
         popupManager = gameObject.GetComponent<PopupManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        state.Updating();
-        trans.position = position;
-        //trans.rotation = Quaternion.Euler(0, 0, rotate);
+        state.Updating();  //플레이어 상태에 따른 업데이트
+        trans.position = position; //플레이어 움직임
 
+        //상호작용 키(예정)
         if (Input.GetKeyDown(KeyCode.F) && isTabel)
         {
             popupManager.OpenPopup(tabelPopup);
         }
 
+        //인벤토리
         if (Input.GetKeyDown(KeyCode.R))
         {
             popupManager.OpenPopup(invenPopup);
